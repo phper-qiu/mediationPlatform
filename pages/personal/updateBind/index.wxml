@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" name="phone" type="number" bindinput="getVerifyCodeInput" placeholder="请输入新手机号" />
+      </view>
+    </view>
+  </view>
+  <view class="page-section">
+    <view class="" style="border-bottom:1px solid #eeeeee;">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" name="verifyCode" type="number" placeholder="请输入验证码" />
+          <text style="color:#0026f5;margin-left:20px;" class="{{is_show?'show':'hide'}}"  bindtap="getVerifyCode">获取验证码</text>
+          <button type="button" style="height:35px;width:120px;font-size:13px;" class="{{is_show?'hide':'show'}}">重新发送({{last_time}})秒</button>
+      </view>
+    </view>
+  </view>
+  <view class="btn-area">
+    <button formType="submit" class="confirmBtn">确定更改</button>
+  </view>
+</form>

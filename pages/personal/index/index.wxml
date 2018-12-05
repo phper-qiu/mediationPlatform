@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo && canIUse}}" class='show-author'>
+      <button open-type="getUserInfo" class='show-author' bindgetuserinfo="getUserInfo">
+
+      <!--随意定制 -->
+        <view class='get-userinfo'>获取用户信息</view>
+      </button>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>  -->
+    </block>
+  </view>
+
+  <view class="userstatus">
+    <view bindtap="checkRegisterToNav" data-url="/pages/shop/info/info?shopId=1" hover-class="navigator-hover" class="menu">我是商家
+      <image class="i" src="/images/address_right.png" background-size="cover"></image>
+    </view>
+    <view bindtap="checkRegisterToNav" data-url="/pages/personal/myInfo/myInfo" hover-class="other-navigator-hover"  class="menu">个人信息
+      <image class="i" src="/images/address_right.png" background-size="cover"></image>
+    </view>
+    <view bindtap="checkRegisterToNav" data-url="/pages/myComment/index" hover-class="other-navigator-hover"  class="menu">我的评价
+      <image class="i" src="/images/address_right.png" background-size="cover"></image>
+    </view>
+  </view>
+  <view class="hotline">
+  客服热线：991
+  </view>
+</view>

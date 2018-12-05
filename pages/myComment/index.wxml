@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<view class="container">
+  <view wx:if="{{commentList.length==0}}">
+  <view class="commentNo">
+    <view><image class="myCommentNoImg" src="/images/myCommentNo.png" background-size="cover"></image></view>
+    <view><text style='text-algin:center;'>您还没有评论过！</text></view>
+  </view>
+  <navigator url="/pages/index/index"  open-type="switchTab" hover-class="other-navigator-hover">
+    <button formType="submit" class="confirmBtn">去评价</button>
+  </navigator>
+  </view>
+  <view wx:if="{{commentList.length>0}}" style="width:100%;">
+    <view class='myCommentList'  wx:for="{{commentList}}" wx:for-index="idx" wx:for-item="itemValue" wx:key="fdId">
+      <view>
+      {{itemValue.create_time}}
+      </view>
+      <view>{{itemValue.content}}</view>
+      <view>辅导课程：{{itemValue.sub_subject}}</view>
+      <view>
+      用户评分： 
+        <block wx:for="{{stars}}">
+          <image class="star-image" style="left: {{item*150}}rpx" src="{{itemValue.star > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+          </image>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

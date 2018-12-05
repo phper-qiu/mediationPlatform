@@ -1,0 +1,29 @@
+/* pages/personal/myInfo.wxss */
+@import "/lib/weui.wxss";
+
+.page-section{
+    margin-bottom: 20rpx;
+}
+.intro {
+  margin: 30px;
+  text-align: center;
+}
+  
+.input-title{
+  margin-right: 5px;
+  width: 20%;
+}
+.weui-input{
+  margin-left: 15px;
+}
+.input-text{
+  margin-left:15px;
+  margin-right: 5px;
+}
+.myInfoBtn{
+  margin-top: 80px;
+  background-color: #59cafa;
+  border-radius: 25px;
+  width: 200px;
+  color: #ffffff;
+}

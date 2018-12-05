@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <text class="input-title">昵称</text>
+        <input name="nick_name" class="weui-input" auto-focus placeholder="请输入昵称" value="{{personalInfo.nick_name}}"/>
+      </view>
+    </view>
+  </view>
+  <view class="page-section">
+    <picker mode="date" value="{{birthday}}" start="1990-01-01" end="2018-11-13" bindchange="bindDateChange">
+      <view class="picker"><text class="input-text" style="margin-right:33px;">出生年月</text>{{birthday}}</view>
+    </picker>
+  </view>
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <text class="input-title">手机号</text>
+        <input  name="" class="weui-input" type="number" placeholder="请输入手机号" value="{{personalInfo.phone}}" />
+        <navigator url="/pages/personal/modifyPhone/index?uid={{personalInfo.uid}}" class="input">
+          <text style="color:#0026f5;">更换手机号</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class="btn-area">
+    <button formType="submit" class="confirmBtn">确定</button>
+  </view>
+</form>

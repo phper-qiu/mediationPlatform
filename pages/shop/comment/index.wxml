@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view >
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab=='all'?'active':''}}"  data-current="all" bindtap="swichNav">全部({{shopComments.eva_rating.all}})</view>
+        <view class="tab-item {{currentTab=='medium'?'active':''}}" data-current="medium" bindtap="swichNav">中评({{shopComments.eva_rating.medium}})</view>
+        <view class="tab-item {{currentTab=='good'?'active':''}}" data-current="good" bindtap="swichNav">好评({{shopComments.eva_rating.good}})</view>
+        <view class="tab-item {{currentTab=='bad'?'active':''}}" data-current="bad" bindtap="swichNav">差评({{shopComments.eva_rating.bad}})</view>
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+        <swiper-item wx:for="{{[0,1,2,3]}}">
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <block wx:for="{{shopComments.eva_list}}" wx:key="*this">
+                    <view class="item-ans">
+                        <view class="avatar">
+                            <image class="img" src="{{item.pic}}"></image>
+                        </view>
+                        <view class="expertInfo">
+                            <view style="display:flex;">
+                                <view class="name">{{item.nick_name}}</view>
+                                <view class="date">{{item.date}}</view>
+                            </view>
+                            <view class="tag">{{item.content}}</view>
+                            <view class="answerHistory">辅导课程：{{item.sub_subject}} </view>
+                            <view>
+                            用户评分： 
+                              <block wx:for="{{stars}}">
+                                <image class="star-image" style="left: {{item*150}}rpx" src="{{key > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+                                  <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
+                                  <view class="item" style="left:75rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+                                </image>
+                              </block>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>

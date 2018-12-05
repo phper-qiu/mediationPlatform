@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/search/search",
+    "pages/personal/index/index",
+    "pages/personal/registerBind/index",
+    "pages/personal/myInfo/myInfo",
+    "pages/personal/modifyPhone/index",
+    "pages/personal/updateBind/index",
+    "pages/map/map",
+    "pages/myComment/index",
+    "pages/shop/detail/detail",
+    "pages/shop/info/info",
+    "pages/shop/comment/index",
+    "pages/shop/evaluate/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#8ec0f6",
+    "navigationBarTitleText": "教育中介平台",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "black",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/ic_menu_choice_nor.png",
+        "selectedIconPath": "images/home_icon.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/personal/index/index",
+        "iconPath": "images/me_uncheck.png",
+        "selectedIconPath": "images/meCheck.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+/**index.wxss**/
+@import "/lib/weui.wxss";
+.shopInfoTitle{
+  font-size: 20px;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin: 5%;
+  border-bottom: 1px solid #eeeeee;
+}
+.shopScore{
+  text-align: center;
+  margin: 10px 0 20px 0;
+}
+.shopScoreNum{
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 10rpx;
+}
+.star-image {
+  /* position: absolute; */
+  top: 50rpx;
+  width: 50rpx;
+  height: 50rpx;
+  src: "/images/star-full.png";
+  margin-right: 15px;
+}
+
+.item {
+  /* position: absolute; */
+  top: 50rpx;
+  width: 75rpx;
+  height: 50rpx;
+}
+
+
+/*评价区域 */
+.evaluate_contant .evaluate_item {
+  font-size: 30rpx;
+  color: gray;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+ }
+  
+ /*评价标题 */
+.evaluate_contant .evaluate_item .evaluate_title {
+  display: inline-block;
+ }
+  
+ /*评价盒子 */
+.evaluate_contant .evaluate_item .evaluate_box {
+  position: absolute;
+  left: 220rpx;
+  width: 100%;
+  display: inline-block;
+ }
+  
+ /*星星评价的每个图片 */
+.evaluate_contant .evaluate_item .evaluate_box .star-image {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  src: "../../images/no-star.png";
+ }
+  
+ /*星星的左边和右边区域<点击左边半个星星，点击右边整个星星> */
+.evaluate_contant .evaluate_item .evaluate_box .star-image .item {
+  position: absolute;
+  top: 0rpx;
+  width: 40rpx;
+  height: 40rpx;
+ }
+  
+ /*按钮 */
+.evaluate_contant .submit_button {
+  height: 60rpx;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  margin: 20rpx;
+ }
+
+
+/*错误提示*/
+.ad_popError{ color: #de352d; height: 58rpx; line-height: 58rpx; font-size: 30rpx;  left: 0; top: 0; width: 100%; z-index:3;}
+.confirmEvaluateBtn{
+  margin-top: 80px;
+  background-color: #459ad0;
+  border-radius: 5px;
+  width: 90%;
+  color: #ffffff;
+}
+.evaluate-section{
+  margin: 5%;
+}
+.evaluate-title{
+  color: black;
+  font-size: 18px;
+  padding-left: 0px;
+}

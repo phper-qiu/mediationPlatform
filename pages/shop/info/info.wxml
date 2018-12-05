@@ -1,0 +1,253 @@
+<!--index.wxml-->
+<view>
+  <view wx:if="{{!shopInfo.is_complete}}" class="shopInfoTopTips">您的店铺尚未完善，完善信息可增加店铺曝光度！</view>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav"><view class="stepNum {{currentTab==0?'active':''}}" bindtap="swichNav" data-current="0" >1</view>机构信息</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav"><view class="stepNum {{currentTab==1?'active':''}}" bindtap="swichNav" data-current="1" >2</view>学习环境</view>
+        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav"><view class="stepNum {{currentTab==2?'active':''}}" bindtap="swichNav" data-current="2">3</view>师资力量</view>
+        <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav"><view class="stepNum {{currentTab==3?'active':''}}" bindtap="swichNav" data-current="3" >4</view>店铺主图</view>
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+        <swiper-item>
+          <form bindsubmit="formSubmitShopInfo" bindreset="formResetShopInfo">
+              <scroll-view scroll-y="true" class="scoll-h" >
+                <view class="item-ans page-section">
+                  <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                    <text class="input-title"><text class="evaluate-span">*</text>机构名称</text>
+                    <input class="weui-input" name="shop_name" placeholder="请输入机构名称" value="{{shopInfo.shop_name}}"/>
+                  </view>
+                </view>
+                <view class="item-ans page-section">
+                    <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                      <text class="input-title"><text class="evaluate-span">*</text>经营范围</text>
+                      <input class="weui-input" name="shop_title" placeholder="请输入经营范围" value="{{shopInfo.shop_title}}"/>
+                    </view>
+                </view>
+                <view class="item-ans page-section">
+                    <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                      <picker bindchange="bindCategoryChange" mode="selector" value="{{category_id}}" range="{{categoryArray}}" range-key="category_name">
+                        <view class="picker">
+                          <text class="evaluate-span">*</text><text class="pickeTitle">所属类目</text><text wx:if="{{!category_id}}" style="font-size:18px;color:#868686;">请选择类目</text>{{categoryShow[category_id].category_name}}
+                        </view>
+                      </picker>
+                    </view>
+                </view>
+                <view class="item-ans page-section">
+                  <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                  <picker mode="date" value="{{date}}" start="2015-09-01" end="2018-12-01" bindchange="bindDateChange">
+                    <view class="picker" value="{{shopInfo.reg_date}}">
+                      <text class="evaluate-span">*</text><text class="pickeTitle">成立时间</text><text wx:if="{{!date}}" style="font-size:18px;color:#868686;">请选择成立时间</text>{{date}}
+                    </view>
+                  </picker>
+                  </view>
+                </view>
+                <view class="item-ans page-section">
+                  <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                  <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                      <view class="picker">
+                        <text class="evaluate-span">*</text><text class="pickeTitle">所在省市</text><text wx:if="{{!region[0]}}" style="font-size:18px;color:#868686;">请选择省市</text>{{region[0]}}{{region[1]}}{{region[2]}}
+                      </view>
+                  </picker>
+                  </view>
+                </view>
+                <view class="item-ans page-section">
+                    <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                      <text class="input-title"><text class="evaluate-span">*</text>详细地址</text>
+                      <input class="weui-input" name="address" placeholder="请输入详细地址" value="{{shopInfo.address}}"/>
+                    </view>
+                </view>
+                <view class="item-ans page-section">
+                    <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                      <text class="input-title" style="padding-right:36rpx;"><text class="evaluate-span">*</text>联系人</text>
+                      <input class="weui-input" name="contact" placeholder="请输入联系人" value="{{shopInfo.contact}}"/>
+                    </view>
+                </view>
+                <view class="item-ans page-section">
+                  <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                    <text class="input-title"><text class="evaluate-span">*</text>联系电话</text>
+                    <input class="weui-input" name="mobile_phone" placeholder="请输入联系电话" value="{{shopInfo.mobile_phone}}"/>
+                  </view>
+                </view>
+                <view class="item-ans page-section">
+                  <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                    <text class="input-title" style="margin-left:20rpx;">座机电话</text>
+                    <input class="weui-input" name="tell_phone" placeholder="请输入座机电话" value="{{shopInfo.tell_phone}}"/>
+                  </view>
+                </view>
+                <view class="item-ans page-section">
+                  <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                    <text class="input-title" style="padding-right:36rpx;"><text class="evaluate-span">*</text>微信号</text>
+                    <input class="weui-input" name="wx_no" placeholder="请输入微信号" value="{{shopInfo.wx_no}}"/>
+                  </view>
+                </view>
+                <view class="item-ans page-section">
+                  <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                    <text class="input-title"><text class="evaluate-span">*</text>教师数量</text>
+                    <input class="weui-input" name="teacher_num" placeholder="请输入教师数量" value="{{shopInfo.teacher_num}}"/>
+                  </view>
+                </view>
+                <view class="item-ans page-section">
+                  <view class="weui-cell weui-cell_input shopInfoPaddingZero">
+                    <text class="input-title"><text class="evaluate-span">*</text>科目数量</text>
+                    <input class="weui-input" name="subject_num" placeholder="请输入科目数量" value="{{shopInfo.subject_num}}"/>
+                  </view>
+                </view>
+                <view class="btn-area">
+                  <button formType="submit" class="confirmBtn">确定</button>
+                </view>
+              </scroll-view>
+          </form>
+        </swiper-item>
+        <swiper-item>
+          <form bindsubmit="formSubmitShopEnv" bindreset="formResetShopEnv">
+            <scroll-view scroll-y="true" class="scoll-h" >
+              <view class="weui-cell"> 
+                <view class="weui-cell__bd"> 
+                  <view class="weui-uploader"> 
+                    <view class="weui-uploader__hd"> 
+                    <view class="weui-uploader__title">请上传如学习环境照片，提升信任度</view> 
+                    <!-- <view class="weui-uploader__info">{{shopLearnEnv.length}}/{{count[countIndex]}}</view>  -->
+                    </view> 
+                    <view class="weui-uploader__bd"> 
+                      <view class="weui-uploader__input-box shopInfoUploadBtn"> 
+                        <view class="weui-uploader__input" data-imagetype="env"  bindtap="chooseImage"></view> 
+                      </view> 
+                    </view> 
+                    <view class="weui-uploader__bd"> 
+                      <view class="weui-uploader__files envDiv"> 
+                        <block wx:for="{{shopLearnEnv}}" class="picture_item" wx:key="{{index}}" wx:for-item="image"> 
+                          <view class="weui-uploader__file" style="height:auto;"> 
+                            <image class="clear-icon" bindtap="clearImg" data-clearType="env" data-index="{{index}}" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/clear-fb-dd9d604f86.png"></image>
+                            <image class="weui-uploader__img" src="{{image.pic}}" data-src="{{image.pic}}" bindtap="previewImage"></image>
+                            <input class="shopInfoUploadInput" auto-focus placeholder="请输入图片名称" data-index="{{index}}" bindblur="inputBlur" value="{{image.title}}"/>
+                          </view> 
+                        </block> 
+                      </view> 
+                    </view> 
+                  </view> 
+                </view> 
+              </view>
+              <view class="btn-area">
+                  <button formType="submit" class="confirmBtn">下一步</button>
+                  <view class="skip" data-current="2" bindtap="swichNav">跳过</view>
+              </view>
+            </scroll-view>
+          </form>
+        </swiper-item>
+        <swiper-item>
+          <form bindsubmit="formSubmitShopTeacher" bindreset="formResetShopTeacher">
+            <scroll-view scroll-y="true" class="scoll-h" >
+              <view class="weui-cell teacherInfo"> 
+                <view class="weui-cell__bd"> 
+                  <view class="weui-uploader"> 
+                    <view class="weui-uploader__hd"> 
+                    <view class="weui-uploader__title" style="display:flex;">
+                      <text style="font-size:15px;line-height:35px;">至少添加一位老师的信息</text>
+                      <button class="addTeacherBtn" bindtap="usekey_addnewdata">添加老师</button>
+                    </view> 
+                    <!-- <view class="weui-uploader__info">{{shopTeacher.length}}/{{count[countIndex]}}</view>  -->
+                    </view> 
+                    <view class="teacherInfoDiv" wx:for="{{shopTeacher}}" wx:for-item="teacherItem" wx:key="index">
+                      <image class="clear-icon" bindtap="clearImg" data-clearType="teacher" data-index="{{index}}" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/clear-fb-dd9d604f86.png"></image>
+                      <view class="weui-uploader__bd"> 
+                        <view class="weui-uploader__input-box shopInfoUploadBtn"> 
+                          <view class="weui-uploader__input" data-imagetype="teacher"  bindtap="chooseImage" data-index="{{index}}"></view> 
+                        </view> 
+                        <view class="weui-uploader__files teacherImgDiv"> 
+                          <view class="weui-uploader__file"> 
+                            <image class="weui-uploader__img" src="{{teacherItem.pic}}" data-src="{{teacherItem.pic}}" bindtap="previewImage"></image>
+                          </view> 
+                        </view> 
+                      </view> 
+                      <view class="item-ans page-section shopInfoPaddingZero">
+                          <text class="input-title"><text class="evaluate-span">*</text>姓名：</text>
+                          <input class="weui-input" placeholder="请输入姓名" bindblur="inputTeacherBlur" data-index="{{index}}" data-title="name" value="{{teacherItem.name}}"/>
+                      </view>
+                      <view class="item-ans page-section shopInfoPaddingZero">
+                          <text class="input-title"><text class="evaluate-span">*</text>职位：</text>
+                          <input class="weui-input"  placeholder="请输入职位" bindblur="inputTeacherBlur" data-index="{{index}}" data-title="job_title" value="{{teacherItem.job_title}}"/>
+                      </view>
+                      <!-- <view class="item-ans page-section">
+                          <text class="input-title"><text class="evaluate-span">*</text>详细介绍：</text>
+                          <view>
+                              <textarea name="textarea" maxlength="50"/>
+                          </view>
+                      </view> -->
+                      <view class="evaluate-section shopInfoPaddingZero">
+                        <view class="weui-cells__title  evaluate-title"><text class="evaluate-span">*</text>详细介绍：</view>
+                        <view class="weui-cells_after-title">
+                            <view class="weui-cell weui-cell_input" style="border: 1px solid #bfbfbf !important;">
+                                <textarea  style="width:270px;" maxlength="50" bindblur="inputTeacherBlur" data-index="{{index}}" data-title="describe"  value="{{teacherItem.describe}}"/>
+                            </view>
+                        </view>
+                    </view>
+                    </view>
+                  </view> 
+                </view> 
+              </view>
+              <view class="btn-area">
+                <button formType="submit" class="confirmBtn">下一步</button>
+              </view>
+            </scroll-view>
+          </form>
+        </swiper-item>
+        <swiper-item>
+          <form bindsubmit="formSubmitShopImage" bindreset="formResetShopImage">
+            <scroll-view scroll-y="true" class="scoll-h" >
+              <view class="weui-cell"> 
+                <view class="weui-cell__bd"> 
+                  <view class="weui-uploader"> 
+                    <view class="weui-uploader__hd"> 
+                    <view class="weui-uploader__title"><text class="evaluate-span">*</text>封面图（1张）</view> 
+                    <!-- <view class="weui-uploader__info">{{shopMainPics.length}}/{{count[countIndex]}}</view>  -->
+                    </view> 
+                    <view class="weui-uploader__bd"> 
+                      <view class="weui-uploader__input-box shopInfoUploadBtn"> 
+                        <view class="weui-uploader__input" data-imagetype="main" bindtap="chooseImage"></view> 
+                      </view> 
+                    </view> 
+                    <view class="weui-uploader__bd" wx:if="{{shopMainPics.cover_pic}}"> 
+                      <view class="weui-uploader__files shopMainImgDiv"> 
+                        <view class="weui-uploader__file"> 
+                          <image class="clear-icon" bindtap="clearImg" data-clearType="main" data-index="{{index}}" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/clear-fb-dd9d604f86.png"></image>
+                          <image class="weui-uploader__img" src="{{shopMainPics.cover_pic}}" data-src="{{shopMainPics.cover_pic}}" bindtap="previewImage"></image>
+                        </view> 
+                      </view> 
+                    </view> 
+                  </view> 
+                </view> 
+              </view>
+              <view class="weui-cell"> 
+                <view class="weui-cell__bd"> 
+                  <view class="weui-uploader"> 
+                    <view class="weui-uploader__hd"> 
+                    <view class="weui-uploader__title">其他图片（最多3张）</view> 
+                    <!-- <view class="weui-uploader__info">{{shopMainPics.other.length}}/{{count[countIndex]}}</view>  -->
+                    </view> 
+                    <view class="weui-uploader__bd"> 
+                      <view class="weui-uploader__input-box shopInfoUploadBtn"> 
+                        <view class="weui-uploader__input" data-imagetype="other" bindtap="chooseImage"></view> 
+                      </view> 
+                    </view> 
+                    <view class="weui-uploader__bd"> 
+                      <view class="weui-uploader__files shopImgDiv" style="display:flex;"> 
+                        <block wx:for="{{otherPics}}" wx:for-item="otherItem"> 
+                        <view class="weui-uploader__file" style="height:auto;"> 
+                          <image class="clear-icon" bindtap="clearImg" data-clearType="other" data-index="{{index}}" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/clear-fb-dd9d604f86.png"></image>
+                          <image class="weui-uploader__img" mode="scaleToFill" src="{{otherItem}}" data-src="{{otherItem}}" bindtap="previewImage"></image>
+                        </view> 
+                        </block> 
+                      </view> 
+                    </view> 
+                  </view> 
+                </view> 
+              </view>
+              <view class="btn-area">
+                <button formType="submit" class="confirmBtn">提交</button>
+              </view>
+            </scroll-view>
+          </form>
+        </swiper-item>
+    </swiper>
+</view>

@@ -1,0 +1,221 @@
+page{
+  position: relative;
+}
+.navigator-arrow {
+  /*padding-right: 26rpx;*/
+  position: relative;
+}
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #888888;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 8rpx;
+}
+
+.img-font-wrap{
+  width:100%;
+  display: flex;
+  align-items: center;
+  transition: opacity .3s;
+  /*padding: 0 10rpx 10rpx 10rpx;*/
+  /*padding-bottom:15rpx;padding-top:15rpx;*/
+  /*margin-bottom: 30rpx;*/
+}
+.img-font{
+  width: 34rpx;
+  height:34rpx;
+  margin-right: 10rpx;
+}
+.show-item{
+  font-size: 34rpx;
+  /* width: 640rpx; */
+  padding-left: 10rpx;
+  margin: auto;
+  /*margin-top:50rpx;*/
+  overflow:scroll;
+}
+.img{
+  height:100%;
+  width:100%;
+}
+.img-list{
+  display: flex;
+  width: 630rpx;
+  margin: auto;
+  /*padding-left: 10rpx;*/
+  flex-wrap: wrap;
+}
+.clear{
+  clear: both;
+}
+.wrap-img{
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  height: 100rpx;
+  width: 200rpx;
+}
+.wrap-jidi-img{
+  height: 150rpx;
+  width: 150rpx;
+  font-weight:  bold;
+}
+.detail-top-item{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 290rpx;
+  border-bottom: dotted 1rpx #8a8a8a;
+}
+
+navigator{
+  /*display: flex;*/
+  height: auto;  
+}
+
+.each{
+  padding: 20rpx 0 20rpx 0;
+  display:flex;
+  align-items:center;
+
+}
+/* 店铺基本信息 */ 
+.shopInfoDiv{
+  border: 1px solid #eeeeee;
+  margin: 15px;
+  padding: 5px;
+}
+.shopInfoHead{
+  border-bottom: 1px solid #eeeeee;
+}
+.shopInfoContent{
+  padding: 10px;
+}
+.shopInfoTitle{
+  margin-top: 40rpx;
+  font-weight: bold;
+  font-size: 20px;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.shopIndicators{
+  background-color: #e4e4e4;
+  text-align: center;
+  height: 40px;
+}
+.shopIndicatorsItem{
+  float: left;
+  margin-left: 20rpx;
+  font-size: 18px;
+}
+
+/* 教师信息 */
+.teach-img-list{
+  width: 100%;
+}
+.teachImg{
+  width: 50px;
+  height: 50px;
+}
+
+.teacherDetail{
+  width: 100%;
+}
+.teacherName{
+  width: 100%;
+}
+/* 学习环境 */
+.learn-img-list{
+  display: inline !important;
+  margin: 10px;
+  text-align: center;
+}
+.learn-title{
+  width: 100%;
+  text-align: center;
+}
+.learn-wrap-img{
+  margin-top: 10px;
+  width: 100%;
+  height: 100px;
+}
+
+/* 学员评论 */
+.shopScore{
+  text-align: center;
+  margin: 10px 0 20px 0;
+}
+.shopScoreNum{
+  font-size: 22px;
+  font-weight: bold;
+}
+.myCommentNoImg{
+  width: 80px;
+  height: 80px;
+  margin: 20px 0px;
+}
+
+.star-image {
+  /* position: absolute; */
+  top: 50rpx;
+  width: 35rpx;
+  height: 35rpx;
+  src: "/images/star-full.png";
+}
+
+.item {
+  /* position: absolute; */
+  top: 50rpx;
+  width: 75rpx;
+  height: 50rpx;
+}
+.myCommentList{
+  border-bottom: 1px solid #eeeeee;
+  margin: 20px;
+}
+.expertInfo{font-size: 12px;flex-grow: 2;color: #B0B0B0;line-height: 1.5em;}
+.item-ans{ margin-bottom:10px;border-bottom:1px solid #eeeeee;width: 100%;display: flex; flex-grow: row no-wrap;justify-content: space-between; padding: 30rpx;box-sizing: border-box; height: 230rpx;align-items: center;border-bottom: 1px solid #F2F2F2;}
+.avatar{width: 100rpx;height: 100rpx;position: relative;margin-right: 30rpx;}
+.avatar .img{width: 100%;height: 100%;}
+/*底部按钮*/
+.add_btn{
+  width: 100%;
+  position: fixed;
+  bottom: 0rpx;
+}
+.btn{
+  margin-top: 30rpx;
+  float: left;
+  border-radius: 0 !important;
+}
+.comment_btn{
+  background: #ffffff;
+  color: black;
+  width: 30%;
+  border-radius: 0 !important;
+}
+.call_shop_btn{
+  background: #97c0f1;
+  color: #fff;
+  width: 70%;
+}
+/* 顶部固定菜单 */
+.small_nav{width:100%; background: #fff; font-size: 26rpx;margin-bottom:20rpx;}
+.small_nav_hide{display: none;}
+.small_nav_scroll{ display: flex; height:80rpx;line-height:80rpx; flex-direction: column; flex-wrap: wrap;  }
+.small_nav_scroll>view{  padding:0 5rpx; margin:0 25rpx;text-align: center; position:relative;}
+.small_nav_scroll>view.cur{ color:#000;}
+.small_nav_scroll>view.cur:after{content: " ";position: absolute;left:0; bottom:0; width:100%;height:5rpx; background: #797979;}
+.small_navFix{width:100%;height:auto; position: fixed;top:0; left:0; z-index: 20}

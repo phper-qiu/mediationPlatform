@@ -1,0 +1,170 @@
+<view class="small_nav {{tabFixed?'small_navFix':'small_nav_hide'}}" id="tab-con">
+    <scroll-view scroll-x="true" scroll-left="{{scrollLeft}}">
+      <view class="small_nav_scroll">
+        <!-- <view class="{{id==''?'cur':' '}}"   data-id=""  bindtap="switchNav">全部</view> -->
+        <view class="{{id==item.categoryId?'cur':' '}}"  wx:for="{{typeList}}" wx:key="index" data-id="{{item.categoryId}}" data-menuid="{{item.menuid}}" data-index="{{index}}" bindtap="switchNav">{{item.categoryName}}</view>
+      </view>
+    </scroll-view>
+</view>
+<view class="section">
+<scroll-view bindscroll="scroll" class='list show-item' style=" {{tabFixed?'margin-top:80rpx;':''}} height:1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{menuid}}" scroll-top="{{scrollTop}}" scroll-y >
+  <view id='img'>
+    <image src="{{shopMainPics.cover_pic}}" mode='widthFix' style="width:100%"></image>
+  </view>
+  <view style='margin-top:-{{marginValue}}px'>
+    <!-- 基地基本信息展示 -->
+    <view class="detail-top-item">
+      <view class="wrap-jidi-img">
+        <image src="{{shopMainPics.cover_pic}}" style="border-radius:50%;" class="img" mode='aspectFill'></image>
+      </view>
+      <view style='padding-top: 15px;color: #ffffff;font-weight: bold;'>{{shopInfo.shop_name}}</view>
+    </view>
+  </view>
+  <view class="shopInfoTitle">
+    {{shopInfo.shop_name}}
+  </view>
+  <view class="shopInfoDiv" id="shopInfoBase">
+      <view class="img-font-wrap each shopInfoHead">
+        <!-- <image src='/images/2_21.png' class="img-font"></image> -->
+        <text>商家基础信息</text>
+      </view>
+      <view class="shopInfoContent">
+        <view class="img-font-wrap each">
+        经营范围：{{shopInfo.shop_title}}
+        </view>
+        <view class="img-font-wrap each">
+        所属类目：{{categoryArray[shopInfo.category_id].category_name}}
+        </view>
+        <!--图片 + 文字  联系人显示  -->
+        <view class="img-font-wrap each">
+          <image src='/images/meCheck.png' class="img-font"></image>
+          <text style='flex:1'>联系人：{{shopInfo.contact}}</text>
+        </view>
+        <!--图片 + 文字  微信号显示 -->
+        <view class="img-font-wrap each">
+          <image src='/images/wechat.png' class="img-font"></image>
+          <text style='overflow:hidden;white-space:nowrap;width:500rpx; text-overflow:ellipsis'>微信号：{{shopInfo.wx_no}}</text>
+        </view>
+        <!--图片 + 文字  地址显示 -->
+        <!-- <navigator bindtap="showLocation" class="each"> -->
+          <view class="img-font-wrap each">
+            <image src='/images/locationShop.png' class="img-font"></image>
+            <text style='overflow:hidden;white-space:nowrap;width:500rpx; text-overflow:ellipsis'>详细地址：{{shopInfo.address}}</text>
+            <!-- <view class="navigator-arrow" style='flex:1;margin-left:80rpx;display:flex;align-self:center;'></view> -->
+          </view>
+        <!-- </navigator> -->
+        <!--图片 + 文字  教师数量显示 -->
+        <view class="img-font-wrap each">
+          <image src='/images/meCheck.png' class="img-font"></image>
+          <text style='overflow:hidden;white-space:nowrap;width:500rpx; text-overflow:ellipsis'>教师数量：{{shopInfo.teacher_num}}</text>
+        </view>
+        <!--图片 + 文字  科目数量显示 -->
+        <view class="img-font-wrap each">
+          <image src='/images/classNum.png' class="img-font"></image>
+          <text style='overflow:hidden;white-space:nowrap;width:500rpx; text-overflow:ellipsis'>科目数量：{{shopInfo.subject_num}}</text>
+        </view>
+      </view>
+  </view>
+  <view class="shopInfoDiv shopIndicators">
+    <view class="shopIndicatorsItem">人气:{{shopInfo.popular}}</view>
+    <view class="shopIndicatorsItem">评分:{{shopInfo.star}}分</view>
+    <view class="shopIndicatorsItem">距离:{{shopInfo.distance}}km</view>
+  </view>
+  <view class="shopInfoDiv" id="teacherInfo">
+    <!--图片 + 文字   师资介绍显示-->
+    <view class="img-font-wrap each shopInfoHead">
+      <!-- <image src='/images/2_21.png' class="img-font"></image> -->
+      <text>师资介绍</text>
+    </view>
+    <!--教师列表-->
+    <view class='shopInfoContent' wx:if="{{shopTeacher.length > 0}}">
+      <view class="each teach-img-list" wx:for="{{shopTeacher}}" wx:for-index="idx" wx:for-item="item">
+        <view class="wrap-img" >
+          <image id='basePhotos-{{idx}}' mode="scaleToFill" bindtap="clickImg" src="{{item.pic}}" class="teachImg"></image>
+        </view>
+        <view class="teacherDetail">
+            <view class="teacherName">
+            {{item.name}}
+            </view>
+            <view class="teacherIntroduced">
+              {{item.describe}}
+            </view>
+          </view>
+      </view>
+    </view>
+  </view>
+  <view class="shopInfoDiv" id="learnInfo">
+    <!--图片 + 文字   学习环境照片显示-->
+    <view class="img-font-wrap each shopInfoHead">
+      <!-- <image src='/images/2_21.png' class="img-font"></image> -->
+      <text>学习环境</text>
+    </view>
+    <!--学习环境图片列表-->
+    <view class='shopInfoContent' wx:if="{{shopLearnEnv.length > 0}}">
+      <view class="each learn-img-list" wx:for="{{shopLearnEnv}}" wx:for-index="idx" wx:for-item="item">
+        <view class="learn-title">{{item.title}}</view>
+        <view class="learn-wrap-img" >
+          <image id='paintingPhotos-{{idx}}' mode="scaleToFill" bindtap="clickImg" src="{{item.pic}}" class="img"></image>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{shopLearnEnv.length == 0}}" style="margin:0 auto;text-align:center;color:red;margin-top:20rpx;margin-bottom:20rpx;">该机构暂未上传学习环境！</view>
+  </view>
+  <view class="shopInfoDiv" id="shopScoreInfo" style="margin-bottom:30px;">
+    <!--图片 + 文字   学习环境照片显示-->
+    <view class="img-font-wrap each shopInfoHead">
+      <!-- <navigator url="/pages/shop/comment/index"> -->
+          <view class="img-font-wrap">
+            <text>学员评价</text>
+            <text wx:if="{{shopInfo.star}}" bindtap="tapAllComments" data-shopId="{{shopInfo.shop_id}}"  style='overflow:hidden;color:#0026f5;white-space:nowrap;width:160rpx;margin-left:370rpx;text-overflow:ellipsis'>查看全部</text>
+            <view wx:if="{{shopInfo.star}}" class="navigator-arrow" style='flex:1;margin-left:5rpx;display:flex;align-self:center;'></view>
+          </view>
+      <!-- </navigator> -->
+    </view>
+    <view class="shopScore">
+      <view class="shopScoreNum">{{shopComments.avg_star}}</view>
+      <block wx:for="{{stars}}">
+          <image class="star-image" style="left: {{item*150}}rpx" src="{{shopComments.avg_star > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+            <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
+            <view class="item" style="left:75rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+          </image>
+        </block>
+    </view>
+    <view wx:if="{{!shopInfo.star}}" style="margin:0 auto;text-align:center;color:red;margin-bottom:30rpx;">暂无评分！</view>
+    <!--评价列表-->
+    <view>
+      <view class="item-ans" wx:for="{{shopComments.eva_list}}" wx:for-index="idx" wx:for-item="itemComments">
+          <view class="avatar">
+              <image class="img" src="{{itemComments.pic}}"></image>
+          </view>
+          <view class="expertInfo">
+              <view class="name">{{itemComments.date}}</view>
+              <view class="tag">{{itemComments.content}}</view>
+              <view class="answerHistory">辅导课程： {{itemComments.sub_subject}}</view>
+              <view>
+              用户评分： 
+                <block wx:for="{{stars}}">
+                  <image class="star-image" style="left: {{item*150}}rpx" src="{{itemComments.star > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+                    <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
+                    <view class="item" style="left:75rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+                  </image>
+                </block>
+              </view>
+          </view>
+      </view>
+      
+    </view>
+</view>
+</scroll-view>
+</view>
+
+<view class='add_btn'>
+  <navigator url="/pages/shop/evaluate/index?shop_id={{shopInfo.shop_id}}&shop_name={{shopInfo.shop_name}}">
+    <button class='comment_btn btn'>
+        我要评价
+    </button>
+  </navigator>
+  <button capture-catch:tap='quickCall' data-phone='{{shopInfo.mobile_phone}}' class='call_shop_btn btn'>
+      联系培训机构
+  </button>
+</view>

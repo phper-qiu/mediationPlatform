@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="userstatus">
+    <navigator url="/pages/shop/info/info" hover-class="navigator-hover">我是商家</navigator>
+    <navigator url="/pages/personal/myInfo/myInfo" open-type="redirect" hover-class="other-navigator-hover">个人信息</navigator>
+    <navigator url="/pages/myComment/index" open-type="switchTab" hover-class="other-navigator-hover">我的评价</navigator>
+  </view>
+  <view>
+  客服热线：991
+  </view>
+</view>

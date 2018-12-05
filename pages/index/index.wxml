@@ -1,0 +1,53 @@
+<wxs src="./index.wxs" module="tools" />
+<scroll-view scroll-y='true' bindscrolltolower='loadMore' bindscroll='scroll' style='height:100%;'>
+  <view class="search">
+    <navigator url="/pages/map/map?cityName={{cityName}}" style="width:130px;">
+      <text class="txt" style="width:50px;">{{cityName}}</text>
+      <image src='http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/pickerArrow-a8b918f05f.png' mode='aspectFit' class="type-icon"></image>
+    </navigator>
+    <navigator url="/pages/search/search?latitude={{latitude}}&longitude={{longitude}}" class="input">
+      <image class="icon"></image>
+      <text class="txt">机构或老师搜索</text>
+    </navigator>
+  </view>
+  <view class="index-hd" bindtap='tapIntroduce'>
+    <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+    <swiper-item wx:for="{{banner}}" wx:key="{{ikey}}">
+      <navigator url="{{item.url}}">
+        <image src="{{item.adv_pic}}" mode="scaleToFill" background-size="cover"></image>
+      </navigator>
+    </swiper-item>
+  </swiper>
+  </view>
+  <view wx:for="{{shopList}}" wx:for-index="idx" wx:for-item="item" wx:key="fdId" bindtap="tapItem" data-shopId="{{item.shop_id}}" data-latitude="{{latitude}}" data-longitude="{{longitude}}" class='wrap-item'>
+  <!-- data-fdHeadTeacherPhone="{{item.fdHeadTeacherPhone}}" data-fdBaseThumbImg="{{item.fdBaseThumbImg}}" data-fdHeadTeacher="{{item.fdHeadTeacher}}"
+    data-fdAddress="{{item.fdAddress}}" data-paintingPhotos="{{item.paintingPhotos}}" data-basePhotos="{{item.basePhotos}}" data-fdLongitude="{{item.fdLongitude}}" data-fdLatitude="{{item.fdLatitude}}" data-fdBaseThumbImg="{{item.fdBaseThumbImg}}"  -->
+    <view class="item">
+      <view class='wrap-img'>
+        <image src="{{item.shop_pic}}" mode="scaleToFill" class='img'></image>
+      </view>
+      <view class='item-desc'>
+        <view class='item-title'>
+          <view style='flex:1'>
+            <view class="item-desc-each" style='color:#333333;font-size:18px;'>{{item.shop_name}}</view>
+          </view>
+        </view>
+        <view id='{{idx}}' class="item-desc-each" style='color:#515151;display:flex;align-items:baseline'>
+          <text style='margin-right:10rpx' class='item-desc-each-each'>人气:{{item.shop_popular}}</text>
+          <text style='margin-right:10rpx' class='item-desc-each-each'>评分:{{item.shop_star}}分</text>
+          <text style='' class='item-desc-each-each'>距离:{{item.distance}}km</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="height:60px" wx:if='{{once}}'>
+    <view wx:if="{{hasMore}}" style="display: flex;flex-direction: row;align-items: center;align-self: center;justify-content: center;">
+      <!--<icon type="waiting" size="45" />
+      <text>加载中...</text>-->
+      <image src='/images/001.gif' mode='center' style='height:100rpx;width:100rpx'></image>
+    </view>
+    <view wx:else style="display:flex;align-items: baseline;justify-content:center">
+      <text>没有更多内容了</text>
+    </view>
+  </view>
+</scroll-view>
